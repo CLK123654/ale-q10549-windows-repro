@@ -11,7 +11,7 @@ const repoRoot = path.resolve(import.meta.dirname, '..');
 const artifactRoot = path.join(repoRoot, 'artifacts');
 const evidenceRoot = path.join(repoRoot, 'evidence');
 const attachments = {
-  '输入数据包.zip': '131e6a38086d780047b57ac6db2007b1a42d942adc431ef258edfe8f85fdb8e9',
+  '输入数据包.zip': 'd97e6dfa4043d9c31fdaeccc43f065a2390d0c6696cc881ac285f3209b10277e',
   'reference.zip': '032e537f243287a48e22db95d779040b2d320340fca3f039747fe21da8776d6d',
   '关键标准答案.xlsx': '1352b479cf9bba242ab81d57d804c39c1e137467c51b6db8145b6ea0eb937030',
   '任务规格转化.xlsx': 'dba45594b3157f46fd0166c3648757f3309112a840ef917c0662c1a479f786af',
