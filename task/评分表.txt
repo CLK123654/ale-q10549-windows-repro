@@ -1,0 +1,85 @@
+总分100分
+
+1. Playwright测试与运行入口
+分值：14分
+优先级：Gate项
+所属层级：L2软件或工具操作层
+标准答案：完成测试使用Playwright操作Chromium，消费全部业务输入并生成三份CSV报告，入口正常结束。
+关键字段：完成测试路径、报告路径、Playwright版本、浏览器类型、入口退出状态
+容差：测试拆分、辅助函数、变量名和控制台文案可以不同。
+失败边界：交付缺失、未启动浏览器、主要输入未读取或入口异常结束。
+可观察证据：交付文件树、Playwright运行记录、浏览器版本和三份报告。
+客观硬性标准：四项交付存在且可解析，Playwright与Chromium真实执行，入口退出码为0。
+阈值：缺失交付数为0，解析错误数为0。
+
+2. 工单关联与浏览器隔离
+分值：12分
+优先级：Gate项
+所属层级：L5多源关联与字段一致性层
+标准答案：每条接管记录关联已知工单，并在新的browser context中打开两个共享存储的page；网络状态链使用独立context。
+关键字段：scenario_id、case_id、first_tab_agent、second_tab_agent、browser context、page
+容差：本地服务实现、context创建位置和页面等待方式可以不同。
+失败边界：未知工单被处理、接管记录复用受污染context、接管场景只有一个page或网络状态与接管场景共用状态。
+可观察证据：三份输入、完成测试、context与page创建记录。
+客观硬性标准：所有接管记录均能关联工单，每条接管记录有两个真实页面且相互隔离。
+阈值：未知工单数为0，缺失页面的接管记录数为0，跨记录状态污染数为0。
+
+3. 跨标签所有权与发送权限
+分值：18分
+优先级：高权重项
+所属层级：L8运行验证或可执行行为层
+标准答案：第二个page发布storage消息，旧page从实际storage事件观察事件名与提示；客服变化时旧标签锁定，同一客服恢复时允许发送。
+关键字段：scenario_id、case_id、first_tab_agent、second_tab_agent、websocket_event、observed_banner、observed_previous_tab_locked
+容差：storage消息封装、locator组合和事件等待方式可以不同。
+失败边界：只改DOM、旧标签直接调用接管函数、从规则文件复制观察列、身份变化与发送权限不一致或同一客服无法发送。
+可观察证据：完成测试、页面storage监听、按钮状态、点击结果和接管矩阵。
+客观硬性标准：事件与提示来自旧标签的浏览器观察，发送权限由客服身份关系决定。
+阈值：事件或提示差异数为0，发送权限误判数为0。
+
+4. 刷新后的草稿恢复
+分值：14分
+优先级：高权重项
+所属层级：L8运行验证或可执行行为层
+标准答案：旧标签填写当前规则中的typed_draft并刷新，从textarea读取恢复值；草稿结果与接管后的发送权限一致。
+关键字段：scenario_id、case_id、draft_key、typed_before_reload、restored_after_reload、send_outcome_after_handoff
+容差：填充和刷新后的等待策略可以等价。
+失败边界：未刷新页面、只读取localStorage、草稿写死在测试、恢复内容不符或发送结果与锁定状态冲突。
+可观察证据：handoff_scenarios.json、page.reload、composer locator和草稿报告。
+客观硬性标准：每条接管记录的草稿均从textarea读取并与当前输入逐字一致。
+阈值：草稿差异数为0，发送结果冲突数为0。
+
+5. 离线与连接状态链
+分值：18分
+优先级：高权重项
+所属层级：L8运行验证或可执行行为层
+标准答案：使用context.setOffline和页面连接事件依次驱动当前offline_scenarios.json中的状态，从页面读取网络、提示、编辑器、发送按钮与草稿结果。
+关键字段：check_id、trigger、observed_banner、navigator_online、composer_enabled、send_enabled、draft_preserved
+容差：网络切换与页面事件之间的等待方式可以不同。
+失败边界：只注入navigator.onLine、跳过状态、未调用setOffline、离线时禁用编辑器、网络恢复后权限错误或草稿丢失。
+可观察证据：完成测试、Playwright context调用、页面locator和离线状态报告。
+客观硬性标准：每个状态的浏览器观察与当前规则一致，草稿在完整状态链中保留。
+阈值：状态缺失数为0，页面观察差异数为0，草稿丢失数为0。
+
+6. 本地页面与请求边界
+分值：10分
+优先级：普通项
+所属层级：L3输入数据导入与完整性层
+标准答案：工作台页面和工单fixture由测试进程的本地HTTP服务提供，页面不依赖真实客服接口。
+关键字段：console.html、console.js、sessions.json、回环主机、请求路径
+容差：可使用Node.js HTTP服务或等价的Playwright本地服务配置，端口可以动态选择。
+失败边界：访问外部页面或客服接口、依赖预启动服务、未从页面请求加载工单fixture或未知路径返回业务内容。
+可观察证据：服务路由、页面请求、Playwright网络记录和完成测试。
+客观硬性标准：正式页面请求只发生在本机回环地址，声明的页面和fixture均由本地服务提供。
+阈值：外部请求数为0，缺失页面资源数为0。
+
+7. 报告格式与跨产物一致性
+分值：14分
+优先级：普通项
+所属层级：L9跨产物一致性与可追溯层
+标准答案：三份CSV具有声明表头和业务键，接管、草稿与网络状态中的工单、客服、提示、权限和草稿结果相互一致。
+关键字段：scenario_id、case_id、check_id、observed_banner、observed_previous_tab_locked、restored_after_reload、navigator_online、send_enabled
+容差：无业务顺序要求的记录可按主键重排，CSV允许必要引号以及LF或CRLF行尾。
+失败边界：表头缺失、业务键重复、报告引用不同输入批次、观察字段从规则直接复制或共享字段相互矛盾。
+可观察证据：三份CSV、两份场景规则、工单fixture和完成测试。
+客观硬性标准：报告可解析，业务键唯一，所有共享字段和跨报告关系闭合。
+阈值：格式错误数为0，重复业务键数为0，跨报告差异行数为0。

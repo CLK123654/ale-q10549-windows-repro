@@ -1,0 +1,9 @@
+1. 用Playwright读取工单、接管和离线规则，按case_id关联对应业务记录。
+2. 在测试进程启动本地HTTP服务，只提供console.html、console.js和sessions.json。
+3. 为每条接管记录新建browser context并打开原客服与接管客服两个page。
+4. 在旧标签用locator填写typed_draft，刷新后从textarea读取恢复值。
+5. 在第二个标签发布包含工单、接管客服、事件名与提示内容的storage消息。
+6. 在旧标签观察storage事件留下的页面属性、可见提示和send-reply按钮状态。
+7. 同一客服恢复时实际点击发送按钮，其他客服接管时保持旧标签锁定。
+8. 在独立context中调用setOffline并驱动页面连接状态，逐步读取页面结果。
+9. 按输入顺序整理接管矩阵、草稿恢复和离线状态三份CSV。

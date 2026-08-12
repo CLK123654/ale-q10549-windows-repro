@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "skill": "humanizer-zh",
+  "score": {
+    "directness": 10,
+    "rhythm": 9,
+    "trust": 9,
+    "authenticity": 9,
+    "conciseness": 10,
+    "total": 47
+  },
+  "notes": [
+    "保留客服工作台会话接管的原始业务目标，删除宣传式背景和制题自证口吻。",
+    "动作按真实浏览器状态变化展开，没有机械三段式、模糊归因或否定式排比。",
+    "交付对象和下游使用者明确，未将测试材料描述为虚构、模拟或演练数据。"
+  ]
+}

@@ -1,0 +1,9 @@
+操作系统： Windows11、macOS或主流64位Linux。
+
+主软件： 支持browser context、多个page、locator、storage事件和setOffline的Playwright稳定版本及Chromium。
+代码执行依赖： Node.js长期支持版本、npm、PowerShell或系统终端，以及CSV与JSON查看工具。
+CPU与内存： 适合并行打开少量Chromium页面的通用多核CPU与常规内存。
+GPU： 无专门要求。
+磁盘： 容纳浏览器、页面输入、完成测试和三份CSV报告。
+网络： 软件准备阶段可访问官方软件源，业务页面只使用本机回环地址。
+超时： 页面载入、跨标签事件、网络切换和报告写出采用有限超时。

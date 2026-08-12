@@ -1,0 +1,9 @@
+你是客服工具团队的前端质量工程师，负责回归本次工作台会话接管改动。发版负责人需要确认另一位客服接手工单后，旧标签不会继续发送回复；同一位客服恢复会话时，发送能力不应被误锁。客服工具团队还要核对刷新和网络变化期间的草稿与页面提示。
+
+输入数据包包含app目录中的本地工作台页面、fixtures/sessions.json工单、handoff_scenarios.json接管与草稿规则、offline_scenarios.json网络状态规则，以及starter/support_console.spec.ts起始测试。README.md说明这些材料的用途与运行入口。请完成测试并保存为output/tests/support_console.spec.ts。
+
+每条接管记录使用新的browser context并打开两个page。旧标签填写typed_draft并刷新，从textarea读取恢复后的内容；第二个标签按handoff_scenarios.json发布storage消息；旧标签从实际storage事件观察事件名、提示条和发送按钮。接管客服发生变化时旧标签锁定，同一客服恢复时保持可发送。
+
+另建一个browser context处理offline_scenarios.json。依次切换浏览器离线、页面连接中断、网络恢复和排队消息送达，从页面读取navigator.onLine、提示条、编辑器、发送按钮和草稿状态。
+
+交付完成测试，以及output/reports下的handoff_state_matrix.csv、draft_recovery_report.csv和offline_banner_checks.csv。三份报告分别用于核对接管状态、草稿恢复与网络提示。在input_data目录运行npm run process。

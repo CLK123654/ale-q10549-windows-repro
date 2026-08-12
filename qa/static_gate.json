@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "result": "PASS",
+  "violations": [],
+  "candidate_score_answer_leakage": [],
+  "rubric_contract": {
+    "item_count": 7,
+    "gate_count": 2,
+    "gate_upper_bound": 2,
+    "items": [
+      {
+        "index": 1,
+        "missing_labels": [],
+        "priority": "Gate项",
+        "level": "L2",
+        "gate_valid": true
+      },
+      {
+        "index": 2,
+        "missing_labels": [],
+        "priority": "Gate项",
+        "level": "L5",
+        "gate_valid": true
+      },
+      {
+        "index": 3,
+        "missing_labels": [],
+        "priority": "高权重项",
+        "level": "L8",
+        "gate_valid": true
+      },
+      {
+        "index": 4,
+        "missing_labels": [],
+        "priority": "高权重项",
+        "level": "L8",
+        "gate_valid": true
+      },
+      {
+        "index": 5,
+        "missing_labels": [],
+        "priority": "高权重项",
+        "level": "L8",
+        "gate_valid": true
+      },
+      {
+        "index": 6,
+        "missing_labels": [],
+        "priority": "普通项",
+        "level": "L3",
+        "gate_valid": true
+      },
+      {
+        "index": 7,
+        "missing_labels": [],
+        "priority": "普通项",
+        "level": "L9",
+        "gate_valid": true
+      }
+    ],
+    "valid": true
+  },
+  "input_answer_control_hits": [],
+  "answer_sheets": [
+    "交付物答案清单",
+    "固定字段答案",
+    "固定集合答案",
+    "固定数值答案",
+    "允许变体答案"
+  ],
+  "specification_sheets": [
+    "任务规格转化"
+  ],
+  "task_spec_row_count": 17,
+  "task_spec_column_count": 2,
+  "task_asset_id": "playwright_support_handoff_offline_regression",
+  "forbidden_spec_labels": [],
+  "declared_delivery_paths": [
+    "output/tests/support_console.spec.ts",
+    "output/reports/handoff_state_matrix.csv",
+    "output/reports/draft_recovery_report.csv",
+    "output/reports/offline_banner_checks.csv"
+  ],
+  "reference_paths": [
+    "output/reports/draft_recovery_report.csv",
+    "output/reports/handoff_state_matrix.csv",
+    "output/reports/offline_banner_checks.csv",
+    "output/tests/support_console.spec.ts"
+  ],
+  "undeclared_reference_paths": [],
+  "missing_delivery_paths": [],
+  "humanizer_score": 47,
+  "semantic_review": "PASS",
+  "online_ai_detector_used_as_conclusion": false
+}
